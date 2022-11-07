@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.7.0 <0.9.0;
+
+contract ejemplo_constructor {
+
+   //address public myadress = msg.sender;
+   int public number;
+   string public mystring;
+   address public d_creador;
+    
+
+
+        constructor (//address _direccioncreador,//
+         string memory _mensaje){
+        //yadress = _direccioncreador;
+        number++;
+        d_creador = msg.sender;
+        mystring = _mensaje; 
+
+    }
+
+     function mensaje_Nuevo(string memory _mensaje) public returns(bool) {
+        require(msg.sender == d_creador, "Solo el creador puede modificar el contrato");
+        mystring = _mensaje;  /// lo que recibe lo guarda en la blockchain
+        number++;
+                return true;
+
+     }
+}
